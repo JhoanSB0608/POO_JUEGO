@@ -1,13 +1,51 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script type="module" src="js/main.js"></script>
-    <script type="module" src="js/Juego.js"></script>
+    <title>Mini juego</title>
 </head>
 <body>
-    <my-game></my-game>
+    <button id="moverse">Moverse</button>
+    <button id="investigar">Investigar</button>
+    <button id="atacar">Atacar</button>
+    <button id="descansar">Descansar</button>
+    <button id="verInventario">Ver Inventario</button>
+    <button id="utilizarPocion">Usar Poción</button>
+    <button id="reiniciar">Reiniciar Juego</button>
+
+    <script type="module">
+        import { Juego } from './js/juego.js';
+
+        const juego = new Juego();
+
+        document.getElementById('moverse').addEventListener('click', () => {
+            juego.ejecutar('moverse');
+        });
+
+        document.getElementById('investigar').addEventListener('click', () => {
+            juego.ejecutar('investigar');
+        });
+
+        document.getElementById('atacar').addEventListener('click', () => {
+            juego.ejecutar('atacar');
+        });
+
+        document.getElementById('descansar').addEventListener('click', () => {
+            juego.ejecutar('descansar');
+        });
+
+        document.getElementById('verInventario').addEventListener('click', () => {
+            juego.ejecutar('verInventario');
+        });
+
+        document.getElementById('utilizarPocion').addEventListener('click', () => {
+            juego.ejecutar('utilizarItem', 'Poción de Vida');
+        });
+
+        document.getElementById('reiniciar').addEventListener('click', () => {
+            juego.ejecutar('reiniciar');
+        });
+    </script>
 </body>
 </html>

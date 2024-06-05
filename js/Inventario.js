@@ -1,16 +1,30 @@
-// Clase para representar el inventario de un personaje
 export class Inventario {
-    constructor() {}
+    constructor() {
+        this.items = [];
+    }
 
     agregarItem(item) {
-        // Implementación para agregar un item al inventario
+        this.items.push(item);
     }
-    
-    utilizarItem(item) {
-        // Implementación para utilizar un item del inventario
+
+    encontrarItem(nombreItem) {
+        return this.items.find(item => item.nombre === nombreItem);
     }
-    
-    removerItem(item) {
-        // Implementación para remover un item del inventario
+
+    utilizarItem(item, heroe) {
+        if (item && item.usar) {
+            const mensaje = item.usar(heroe);
+            this.items = this.items.filter(i => i !== item); // Eliminar item del inventario después de usarlo
+            return mensaje;
+        } else {
+            return "No se pudo usar el ítem.";
+        }
+    }
+
+    imprimirLista() {
+        if (this.items.length === 0) {
+            return ["El inventario está vacío."];
+        }
+        return this.items.map(item => `Item: ${item.nombre}`);
     }
 }

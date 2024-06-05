@@ -1,26 +1,37 @@
-import { Criatura } from "./Criatura.js";
-import { Inventario } from "./Inventario.js";
+import { Criatura } from "./criatura.js";
+import { Inventario } from "./inventario.js";
 
-// Clase para representar un héroe en el juego
 export class Heroe extends Criatura {
-    inventario; // Inventario del héroe
+    #ataque = 10; // Definición del campo privado
 
-    /**
-     * Constructor de la clase Heroe
-     * @param {string} nom - Nombre del héroe
-     */
-    constructor(nom) {
+    constructor() {
         super();
-        this.getVidaMaxima;
-        this.setNombre = nom;
-        this.setVida = 0;
-        this.inventario = new Inventario(); // Crear un nuevo inventario para el héroe
+        this.setVidaBase = 160;
+        this.descansado = true;
+        this.inventario = new Inventario();
     }
 
-    /**
-     * Getter para obtener el inventario del héroe
-     */
-    get getInventario() {
-        return this.inventario;
+    descansar() {
+        let mensajes = [];
+        if (!this.descansado) {
+            this.setVida = 20;
+            this.descansado = true;
+            mensajes.push("El héroe ha descansado y ha recuperado 20 puntos de vida.");
+        } else {
+            mensajes.push("El héroe ya está descansado, no puede descansar nuevamente.");
+        }
+        return mensajes;
     }
+
+    cansar() {
+        this.descansado = false;
+    }
+
+    reiniciarInventario() {
+        this.inventario = new Inventario();
+    }
+
+    get getAtaque() {
+        return this.#ataque;
+    }    
 }
